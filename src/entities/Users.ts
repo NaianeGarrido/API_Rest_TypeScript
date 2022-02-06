@@ -19,7 +19,7 @@ class User {
   email: string;
 
   @Column()
-  admin: string;
+  admin: boolean;
 
   @CreateDateColumn()
   created_at: Date;
