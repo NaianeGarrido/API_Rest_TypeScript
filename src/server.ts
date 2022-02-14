@@ -1,17 +1,19 @@
 /**Sintaxe para importar bibliotecas ou outros arquivos */
-import express, {Request, Response, NextFunction} from "express";
-import "reflect-metadata";
 import "./database";
-import {router} from "./routes"; 
+import {router} from "./routes/routes";
+import "reflect-metadata";
+import express, {Request, Response, NextFunction} from "express";
 import "express-async-errors"
-
+import cors from "cors";
 
 /**instanciando a biblioteca do express*/
 const app = express();
+//habilita que outras fontes consigam acessar a minha aplicação para receber uma aplicação de fora
+app.use(cors());
 
 app.use(express.json());
 
-app.use(router)
+app.use(router);
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
   if(err instanceof Error) {
